@@ -1,4 +1,4 @@
-class Defanging {
+public class Defanging {
     public String defangIPaddr(String address) {
         
 

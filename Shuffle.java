@@ -1,4 +1,4 @@
-class Shuffle {
+public class Shuffle {
     public int[] shuffle(int[] nums, int n) {
            int[] answer = new int[nums.length];
 

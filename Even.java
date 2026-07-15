@@ -1,4 +1,4 @@
-class Even {
+ public class Even {
     public int findNumbers(int[] nums) {
         int evenCount = 0;
 

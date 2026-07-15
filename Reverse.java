@@ -1,4 +1,4 @@
-class Reverse {
+public class Reverse {
     public int reverse(int x) {
         int result = 0;
         while(x!=0){

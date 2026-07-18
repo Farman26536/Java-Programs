@@ -4,22 +4,56 @@ public class Validinteger {
 
         s = s.trim();
 
-        if (s.length() == 0) {
-            return false;
-        }
+        boolean seenDigit = false;
+        boolean seenDot = false;
+        boolean seenE = false;
+        boolean digitAfterE = true;
 
-        try {
-            Double.parseDouble(s);
+        for (int i = 0; i < s.length(); i++) {
 
-            // parseDouble accepts "Infinity", which LeetCode does not.
-            if (s.equals("Infinity") || s.equals("-Infinity") || s.equals("+Infinity")) {
+            char ch = s.charAt(i);
+
+            if (Character.isDigit(ch)) {
+
+                seenDigit = true;
+
+                if (seenE) {
+                    digitAfterE = true;
+                }
+
+            } 
+            else if (ch == '.') {
+
+                if (seenDot || seenE) {
+                    return false;
+                }
+
+                seenDot = true;
+
+            } 
+            else if (ch == 'e' || ch == 'E') {
+
+                if (seenE || !seenDigit) {
+                    return false;
+                }
+
+                seenE = true;
+                digitAfterE = false;
+
+            } 
+            else if (ch == '+' || ch == '-') {
+
+                if (i != 0 && s.charAt(i - 1) != 'e' && s.charAt(i - 1) != 'E') {
+                    return false;
+                }
+
+            } 
+            else {
+
                 return false;
             }
-
-            return true;
-
-        } catch (Exception e) {
-            return false;
         }
+
+        return seenDigit && digitAfterE;
     }
 }
